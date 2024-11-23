@@ -34,7 +34,15 @@
 import random
 import time
 
-# Fungsi Merge Sort
+# Implementasi Bubble Sort
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+
+# Implementasi Merge Sort
 def merge_sort(arr):
     if len(arr) <= 1:
         return arr
@@ -60,36 +68,27 @@ def merge(left, right):
     result.extend(right[j:])
     return result
 
-# Fungsi Bubble Sort
-def bubble_sort(arr):
-    n = len(arr)
-    for i in range(n):
-        for j in range(0, n - i - 1):
-            if arr[j] > arr[j + 1]:
-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
-
 # Membuat data acak
-data = [random.randint(1, 1000) for _ in range(100)]
+X = [random.randint(1, 1000) for _ in range(100)]
 
-# Menyalin data untuk kedua algoritma
-arr_bubble = data[:]
-arr_merge = data[:]
-
-# Mengukur waktu untuk Bubble Sort
+# Bubble Sort dengan pengukuran waktu
+arr_bubble = X[:]
 start_time_bubble_sort = time.perf_counter()
 bubble_sort(arr_bubble)
 end_time_bubble_sort = time.perf_counter()
 time_complexity_bubble = end_time_bubble_sort - start_time_bubble_sort
 
-# Mengukur waktu untuk Merge Sort
+# Merge Sort dengan pengukuran waktu
+arr_merge = X[:]
 start_time_merge_sort = time.perf_counter()
 arr_merge = merge_sort(arr_merge)
 end_time_merge_sort = time.perf_counter()
 time_complexity_merge = end_time_merge_sort - start_time_merge_sort
 
 # Hasil
-print(f"Hasil perhitungan dari Bubble Sort adalah sebagai berikut: {arr_bubble}\n")
-print(f"Hasil perhitungan dari Merge Sort adalah sebagai berikut: {arr_merge}\n")
+print(f"Data awal: {X}\n")
+print(f"Hasil Bubble Sort: {arr_bubble}\n")
+print(f"Hasil Merge Sort: {arr_merge}\n")
 
 print(f"Time Complexity untuk Bubble Sort: {time_complexity_bubble:.10f} detik \n")
 print(f"Time Complexity untuk Merge Sort: {time_complexity_merge:.10f} detik \n")
